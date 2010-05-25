@@ -11,6 +11,7 @@ public:
     int Rotate(RotateDirection direction);
     int MoveLeft();
     int MoveRight();
+    int GetPieceCoord(int blockNo, bool isX);
     int WriteToBoard();
     int Print();
 protected:

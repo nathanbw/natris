@@ -18,8 +18,7 @@ Tetromino::Fall()
     bool safeToFall = true;
     for(int i = 0; i < 4; i++)
     {
-        if ((vCoords[i][0] <= 0) ||
-            mpBoard->IsEmpty(vCoords[i][1],vCoords[i][0] + 1))
+        if (mpBoard->IsEmpty(vCoords[i][1],vCoords[i][0] + 1))
         {
         }
         else
@@ -54,8 +53,7 @@ Tetromino::MoveLeft()
     bool safeToMove = true;
     for(int i = 0; i < 4; i++)
     {
-        if ((vCoords[i][1] > 0) ||
-            mpBoard->IsEmpty(vCoords[i][1] - 1, vCoords[i][0]))
+        if (mpBoard->IsEmpty(vCoords[i][1] - 1, vCoords[i][0]))
         {
         }
         else
@@ -83,8 +81,7 @@ Tetromino::MoveRight()
     bool safeToMove = true;
     for(int i = 0; i < 4; i++)
     {
-        if ((vCoords[i][1] < 9) ||
-            mpBoard->IsEmpty(vCoords[i][1] + 1, vCoords[i][0]))
+        if (mpBoard->IsEmpty(vCoords[i][1] + 1, vCoords[i][0]))
         {
         }
         else
@@ -104,6 +101,12 @@ Tetromino::MoveRight()
     {
         return -1;
     }
+}
+
+int
+Tetromino::GetPieceCoord(int blockNo, bool isX)
+{
+    return vCoords[blockNo][(isX ? 1 : 0)];
 }
 
 int
