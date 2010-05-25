@@ -18,12 +18,13 @@ Tetromino::Fall()
     bool safeToFall = true;
     for(int i = 0; i < 4; i++)
     {
-        if (mpBoard->IsEmpty(vCoords[i][1],vCoords[i][0] + 1))
+        if ((vCoords[i][0] < 0) ||
+            mpBoard->IsEmpty(vCoords[i][1],vCoords[i][0] + 1))
         {
         }
         else
         {
-           safeToFall = false;
+            safeToFall = false;
         }
     }
     if(safeToFall)
@@ -58,7 +59,7 @@ Tetromino::MoveLeft()
         }
         else
         {
-           safeToMove = false;
+            safeToMove = false;
         }
     }
     if(safeToMove)
@@ -86,7 +87,7 @@ Tetromino::MoveRight()
         }
         else
         {
-           safeToMove = false;
+            safeToMove = false;
         }
     }
     if(safeToMove)
