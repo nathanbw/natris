@@ -11,6 +11,7 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 
+int timeToFall = 0;
 void timeOut(int);
 TetrisBoard* pBoard = new TetrisBoard();
 TetSquare* pTetSquare = new TetSquare(SHAPE_S_4, pBoard);
@@ -29,6 +30,24 @@ void reshape (int w, int h)
    glLoadIdentity ();
    gluOrtho2D(0.0, 10.0, 0.0, 20.0);
    glMatrixMode (GL_MODELVIEW);
+}
+
+void specialKeys( int key, int x, int y)
+{
+    switch( key )
+    {
+    case GLUT_KEY_LEFT :
+        pTetSquare->MoveLeft();
+        break;
+    case GLUT_KEY_RIGHT :
+        pTetSquare->MoveRight();
+        break;
+    case GLUT_KEY_DOWN :
+        pTetSquare->Fall();
+        break;
+    default:
+        break;
+    }
 }
 
 void renderScene(void) {
@@ -96,12 +115,9 @@ void renderScene(void) {
          glPopMatrix();
      }
 
-    if(rand() % 2)
-        pTetSquare->MoveLeft(); 
-    else
-        pTetSquare->MoveRight();
-
-    pTetSquare->Fall();
+    if(((timeToFall % 30) == 0))
+        pTetSquare->Fall();
+    timeToFall++;
 
     // Calls glFlush() for us.
     glutSwapBuffers();
@@ -110,7 +126,7 @@ void renderScene(void) {
 void timeOut(int param)
 {
     renderScene();
-    glutTimerFunc((1000/*/30*/), timeOut, 0); // Let's do 30 fps
+    glutTimerFunc((1000/30), timeOut, 0); // Let's do 30 fps
 }
 
 int main(int argc, char** argv)
@@ -126,6 +142,7 @@ int main(int argc, char** argv)
  	glutDisplayFunc(renderScene);
     glutReshapeFunc(reshape);
     //glutIdleFunc(renderScene);
+    glutSpecialFunc(specialKeys);
     glutTimerFunc((1000/30), timeOut, 0); // Let's do 30 fps
     glutMainLoop();
     return 0; // Never reached.
