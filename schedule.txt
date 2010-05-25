@@ -1,0 +1,67 @@
+Current Target: 0.1
+
+0.1 Planned Features:
+Single viewport, non-resizable 10x20 game board.
+All standard tetris pieces. (Square, Line, L, Reverse L, S, Backward S, Tri.)
+No fancy scoring, but row and block stats are kept.
+No next piece preview.
+Fully playable.
+      Movement controls work.
+      "Collisions" work (rules are adhered to.)
+      Bottom row gets cleared when full.
+      Game ends when top of board is reached.
+      Stats are kept, dumped to standard out.
+
+
+Implementation:
+Board is a 2d array of int. 0 means no block is occupying that space,
+anything other than zero means a block is there. (Will use the numbers to
+specify what color of block is there.)
+
+The current tetrine only keeps a list of coordinates of where it is in space,
+it doesn't actually write itself to the board until it is done falling.
+
+On every call to updatePos(), the tetrine checks if all the new coordinates
+are clear on the board. If they are, we update the coords. If not, we don't move.
+
+If we are update() ing because of "gravity" and can't perform the update, then we
+write ourselves to the board, and load the next piece.
+
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+
+
+[0][0] could contain boardX
+[0][1] could contain boardY
+
+We'll do [row][col] where
+[0][0] is top left corner
+[BOARD_MAX_X][BOARD_MAX_Y] is the bottom right of the board (but it's max "height")
+Pieces show up at the top and drop into the viewing area from above.
+
+
+
+
+
