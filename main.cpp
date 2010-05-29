@@ -6,6 +6,9 @@
 #include "TetrisBoard.h"
 #include "Tetromino.h"
 #include "TetSquare.h"
+#include "TetS.h"
+#include "TetReverseS.h"
+#include "TetL.h"
 #include "TetLine.h"
 
 #include <GL/gl.h>
@@ -15,7 +18,7 @@
 int timeToFall = 0;
 void timeOut(int);
 TetrisBoard* pBoard = new TetrisBoard();
-TetLine* pTetSquare = new TetLine(SHAPE_S_4, pBoard);
+TetL* pTetSquare = new TetL(SHAPE_S_4, pBoard);
 
 
 void init()
@@ -44,7 +47,8 @@ void specialKeys( int key, int x, int y)
         pTetSquare->MoveRight();
         break;
     case GLUT_KEY_DOWN :
-        pTetSquare->Fall();
+        //pTetSquare->Fall();
+        pTetSquare->Rotate(DIR_COUNTER_CLOCK);
         break;
     case GLUT_KEY_UP :
         pTetSquare->Rotate(DIR_CLOCK);
