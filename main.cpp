@@ -9,6 +9,8 @@
 #include "TetS.h"
 #include "TetReverseS.h"
 #include "TetL.h"
+#include "TetReverseL.h"
+#include "TetTri.h"
 #include "TetLine.h"
 
 #include <GL/gl.h>
@@ -18,7 +20,7 @@
 int timeToFall = 0;
 void timeOut(int);
 TetrisBoard* pBoard = new TetrisBoard();
-TetL* pTetSquare = new TetL(SHAPE_S_4, pBoard);
+TetTri* pTetSquare = new TetTri(SHAPE_S_4, pBoard);
 
 
 void init()
