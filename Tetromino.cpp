@@ -111,6 +111,14 @@ Tetromino::GetPieceCoord(int blockNo, bool isX)
 }
 
 int
+Tetromino::FallToBottom()
+{
+    while(-1 != Fall());
+    WriteToBoard();
+    //mpBoard->UpdateRows()
+}
+
+int
 Tetromino::WriteToBoard()
 {
     for (int i = 0; i < 4; i++)

@@ -8,10 +8,11 @@ class Tetromino
 public:
   Tetromino(TetrominoShape shape, TetrisBoard* pBoard);
     int Fall();
-    int Rotate(RotateDirection direction);
+    virtual int Rotate(RotateDirection direction);
     int MoveLeft();
     int MoveRight();
     int GetPieceCoord(int blockNo, bool isX);
+    int FallToBottom();
     int WriteToBoard();
     int Print();
 protected:

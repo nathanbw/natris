@@ -20,7 +20,7 @@
 int timeToFall = 0;
 void timeOut(int);
 TetrisBoard* pBoard = new TetrisBoard();
-TetTri* pTetSquare = new TetTri(SHAPE_S_4, pBoard);
+Tetromino* pCurrPiece = new TetTri(SHAPE_S_4, pBoard);
 
 
 void init()
@@ -38,22 +38,34 @@ void reshape (int w, int h)
    glMatrixMode (GL_MODELVIEW);
 }
 
-void specialKeys( int key, int x, int y)
+void specialKeys(int key, int x, int y)
 {
-    switch( key )
+    switch(key)
     {
     case GLUT_KEY_LEFT :
-        pTetSquare->MoveLeft();
+        pCurrPiece->MoveLeft();
         break;
     case GLUT_KEY_RIGHT :
-        pTetSquare->MoveRight();
+        pCurrPiece->MoveRight();
         break;
     case GLUT_KEY_DOWN :
-        //pTetSquare->Fall();
-        pTetSquare->Rotate(DIR_COUNTER_CLOCK);
+        //pCurrPiece->Fall();
+        pCurrPiece->Rotate(DIR_COUNTER_CLOCK);
         break;
     case GLUT_KEY_UP :
-        pTetSquare->Rotate(DIR_CLOCK);
+        pCurrPiece->Rotate(DIR_CLOCK);
+        break;
+    default:
+        break;
+    }
+}
+
+void regularKeys(unsigned char key, int x, int y)
+{
+    switch(key)
+    {
+    case 32 :
+        pCurrPiece->FallToBottom();
         break;
     default:
         break;
@@ -78,7 +90,7 @@ void renderScene(void) {
             {
                 // std::cout << "5 ";
                 glPushMatrix();
-                glTranslatef((float)x, 19.5 - (float)y, 0.0);
+                glTranslatef((float)x + 0.5, 19.5 - (float)y, 0.0);
                 glTranslatef(-0.5, -0.5, 0.0);
                 glColor3f(0.0, 1.0, 0.75);
                 glBegin(GL_QUADS);
@@ -104,8 +116,8 @@ void renderScene(void) {
     for (int i = 0; i < 4; i++)
      {
          glPushMatrix();
-         glTranslatef((float)pTetSquare->GetPieceCoord(i, true) + 0.5,
-                      19.5 - (float)pTetSquare->GetPieceCoord(i, false), 0.0);
+         glTranslatef((float)pCurrPiece->GetPieceCoord(i, true) + 0.5,
+                      19.5 - (float)pCurrPiece->GetPieceCoord(i, false), 0.0);
          glTranslatef(-0.5, -0.5, 0.0);
          glColor3f(0.0, 1.0, 0.75);
          glBegin(GL_QUADS);
@@ -126,7 +138,7 @@ void renderScene(void) {
      }
 
     if(((timeToFall % 30) == 0))
-        pTetSquare->Fall();
+        pCurrPiece->Fall();
     timeToFall++;
 
     // Calls glFlush() for us.
@@ -153,6 +165,7 @@ int main(int argc, char** argv)
     glutReshapeFunc(reshape);
     //glutIdleFunc(renderScene);
     glutSpecialFunc(specialKeys);
+    glutKeyboardFunc(regularKeys);
     glutTimerFunc((1000/30), timeOut, 0); // Let's do 30 fps
     glutMainLoop();
     return 0; // Never reached.
