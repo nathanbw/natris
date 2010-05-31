@@ -8,7 +8,8 @@ enum TetrominoShape
     SHAPE_REVERSE_L_4,
     SHAPE_S_4,
     SHAPE_REVERSE_S_4,
-    SHAPE_TRI_4
+    SHAPE_TRI_4,
+    SHAPE_TET_MAX
 };
 
 enum RotateDirection

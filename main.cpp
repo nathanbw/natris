@@ -1,17 +1,10 @@
 #include <iostream>
-#include <cstdlib>
 #include <ctime>
 
 #include "TetrisDefs.h"
 #include "TetrisBoard.h"
+#include "LogicalGame.h"
 #include "Tetromino.h"
-#include "TetSquare.h"
-#include "TetS.h"
-#include "TetReverseS.h"
-#include "TetL.h"
-#include "TetReverseL.h"
-#include "TetTri.h"
-#include "TetLine.h"
 
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -20,11 +13,20 @@
 int timeToFall = 0;
 void timeOut(int);
 TetrisBoard* pBoard = new TetrisBoard();
-Tetromino* pCurrPiece = new TetTri(SHAPE_S_4, pBoard);
+LogicalGame* pGame = new LogicalGame(pBoard);
+Tetromino* pCurrPiece = 0;
 
+float colors[7][3] = {{1.0, 0.0, 0.0}, // Line
+                      {0.0, 0.0, 1.0}, // Square
+                      {0.0, 0.75, 0.75}, // L
+                      {0.5, 0.0, 0.5}, // Reverse L
+                      {0.0, 1.0, 0.75}, // S
+                      {0.25, 0.0, 0.0}, // Reverse S
+                      {0.0, 1.0, 0.0}};  // Tri
 
 void init()
 {
+    pCurrPiece = pGame->GetCurrPiece();
     glClearColor(0.25, 0.25, 0.25, 0.0);
     glShadeModel(GL_FLAT);
 }
@@ -66,6 +68,10 @@ void regularKeys(unsigned char key, int x, int y)
     {
     case 32 :
         pCurrPiece->FallToBottom();
+        pBoard->ClearRows();
+        pCurrPiece->Reset();
+        pCurrPiece = pGame->GetCurrPiece();
+        pCurrPiece->PopToTop();
         break;
     default:
         break;
@@ -73,8 +79,8 @@ void regularKeys(unsigned char key, int x, int y)
 }
 
 void renderScene(void) {
+    TetrominoShape currShape;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glColor3f(0.0, 1.0, 0.75);
 // Draw the board first:
     for(int y = 0; y < 20; y++)
     {
@@ -89,10 +95,14 @@ void renderScene(void) {
             else // There is a shape to display
             {
                 // std::cout << "5 ";
+                currShape = pBoard->ShapeAt(x, y);
                 glPushMatrix();
                 glTranslatef((float)x + 0.5, 19.5 - (float)y, 0.0);
                 glTranslatef(-0.5, -0.5, 0.0);
-                glColor3f(0.0, 1.0, 0.75);
+                //glColor3f(0.0, 1.0, 0.75);
+                glColor3f(colors[currShape][0],
+                          colors[currShape][1],
+                          colors[currShape][2]);
                 glBegin(GL_QUADS);
                 glVertex3f( 0.0f,  0.0f,  0.0f);
                 glVertex3f( 1.0f,  0.0f,  0.0f);
@@ -115,11 +125,15 @@ void renderScene(void) {
 // Then draw the current piece:
     for (int i = 0; i < 4; i++)
      {
+         currShape = pCurrPiece->GetShape();
          glPushMatrix();
          glTranslatef((float)pCurrPiece->GetPieceCoord(i, true) + 0.5,
                       19.5 - (float)pCurrPiece->GetPieceCoord(i, false), 0.0);
          glTranslatef(-0.5, -0.5, 0.0);
-         glColor3f(0.0, 1.0, 0.75);
+         //glColor3f(0.0, 1.0, 0.75);
+         glColor3f(colors[currShape][0],
+                   colors[currShape][1],
+                   colors[currShape][2]);
          glBegin(GL_QUADS);
          glVertex3f( 0.0f,  0.0f,  0.0f);
          glVertex3f( 1.0f,  0.0f,  0.0f);
@@ -138,7 +152,16 @@ void renderScene(void) {
      }
 
     if(((timeToFall % 30) == 0))
-        pCurrPiece->Fall();
+    {
+        if(-1 == pCurrPiece->Fall())
+        {
+            pCurrPiece->WriteToBoard();
+            pBoard->ClearRows();
+            pCurrPiece->Reset();
+            pCurrPiece = pGame->GetCurrPiece();
+            pCurrPiece->PopToTop();
+        }
+    }
     timeToFall++;
 
     // Calls glFlush() for us.
@@ -153,8 +176,6 @@ void timeOut(int param)
 
 int main(int argc, char** argv)
 {
-    srand((unsigned)time(0));
-
  	glutInit(&argc, argv);
  	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
  	glutInitWindowSize(320,640);

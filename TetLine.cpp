@@ -7,15 +7,28 @@ TetLine::TetLine(TetrominoShape shape, TetrisBoard* pBoard) :
     // Square, like this:
     // 0110
     // 0110
+    Reset();
+}
+
+void
+TetLine::Reset()
+{
     // x, y for each block, starting at top left corner
     // and going clockwise
-    // Top Row
-    vCoords[0][0] = -3; vCoords[0][1] = 5;
-    vCoords[1][0] = -2; vCoords[1][1] = 5;
-    
-    // Bottom Row
-    vCoords[2][0] = -1; vCoords[2][1] = 5;
-    vCoords[3][0] = 0; vCoords[3][1] = 5;
+    vCoords[0][0] = -4; vCoords[0][1] = 5;
+    vCoords[1][0] = -3; vCoords[1][1] = 5;
+    vCoords[2][0] = -2; vCoords[2][1] = 5;
+    vCoords[3][0] = -1; vCoords[3][1] = 5;
+    mPos = TP_UP;
+}
+
+void
+TetLine::PopToTop()
+{
+    vCoords[0][0] = 0;
+    vCoords[1][0] = 1;
+    vCoords[2][0] = 2;
+    vCoords[3][0] = 3;
 }
 
 int

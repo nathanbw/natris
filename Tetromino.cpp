@@ -37,7 +37,6 @@ Tetromino::Fall()
     }
     else
     {
-        // Write to board?
         return -1;
     }
 }
@@ -46,6 +45,11 @@ int
 Tetromino::Rotate(RotateDirection direction)
 {
     return 0;
+}
+
+void
+Tetromino::Reset()
+{
 }
 
 int
@@ -118,6 +122,11 @@ Tetromino::FallToBottom()
     //mpBoard->UpdateRows()
 }
 
+void
+Tetromino::PopToTop()
+{
+}
+
 int
 Tetromino::WriteToBoard()
 {
@@ -134,4 +143,10 @@ Tetromino::Print()
     {
         cout << vCoords[i][0] << "," << vCoords[i][1] << endl;
     }
+}
+
+TetrominoShape
+Tetromino::GetShape()
+{
+    return mShape;
 }

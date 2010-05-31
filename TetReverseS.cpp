@@ -7,12 +7,28 @@ TetReverseS::TetReverseS(TetrominoShape shape, TetrisBoard* pBoard) :
     // 0010
     // 0110
     // 0100
+    Reset();
+}
+
+void
+TetReverseS::Reset()
+{
     // x, y for each block, starting at top left corner
     // and going clockwise
-    vCoords[0][0] = -2; vCoords[0][1] = 5;
-    vCoords[1][0] = -1; vCoords[1][1] = 5;
-    vCoords[2][0] = -1; vCoords[2][1] = 4;
-    vCoords[3][0] = 0; vCoords[3][1] = 4;
+    vCoords[0][0] = -3; vCoords[0][1] = 5;
+    vCoords[1][0] = -2; vCoords[1][1] = 5;
+    vCoords[2][0] = -2; vCoords[2][1] = 4;
+    vCoords[3][0] = -1; vCoords[3][1] = 4;
+    mPos = TP_UP;
+}
+
+void
+TetReverseS::PopToTop()
+{
+    vCoords[0][0] = 0;
+    vCoords[1][0] = 1;
+    vCoords[2][0] = 1;
+    vCoords[3][0] = 2;
 }
 
 int

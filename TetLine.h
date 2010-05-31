@@ -6,6 +6,8 @@ class TetLine : public Tetromino
 {
 public:
     TetLine(TetrominoShape shape, TetrisBoard* pBoard);
+    void Reset();
+    void PopToTop();
     int Rotate(RotateDirection direction);
  private:
 };

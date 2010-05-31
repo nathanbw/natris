@@ -6,6 +6,8 @@ class TetSquare : public Tetromino
 {
 public:
     TetSquare(TetrominoShape shape, TetrisBoard* pBoard);
+    void Reset();
+    void PopToTop();
     int Rotate(RotateDirection direction);
  private:
 };

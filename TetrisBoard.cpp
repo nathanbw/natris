@@ -68,3 +68,38 @@ TetrisBoard::Print()
         cout << endl;
     }
 }
+
+int
+TetrisBoard::ClearRows()
+{
+    bool clearRow = true;
+    for (int i = 0; i < 20; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            if(mBoard[i][j] == -1)
+                clearRow = false;
+        }
+        if(clearRow)
+        {
+            ClearRow(i);
+        }
+        clearRow = true;
+    }
+}
+
+int
+TetrisBoard::ClearRow(int row)
+{
+    for (int j = 0; j < 10; j++)
+    {
+        mBoard[row][j] = -1;
+    }
+    for(int i = row; i > 0; i--)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            mBoard[i][j] = mBoard[i - 1][j];
+        }
+    }
+}

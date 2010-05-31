@@ -9,6 +9,8 @@ public:
     TetrominoShape ShapeAt(int x, int y);
     int Write(int x, int y, int value);
     int Print();
+    int ClearRows();
+    int ClearRow(int row);
 private:
     int mBoard[20][10];
 };
