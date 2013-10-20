@@ -1,5 +1,5 @@
-#ifndef _TetrisDefs_h_
-#define _TetrisDefs_h_
+#ifndef _NatrisDefs_h_
+#define _NatrisDefs_h_
 enum TetrominoShape
 {
     SHAPE_LINE_4,
@@ -25,4 +25,4 @@ enum TetrominoPosition
     TP_DOWN,
     TP_LEFT
   };
-#endif //_TetrisDefs_h_
+#endif //_NatrisDefs_h_

@@ -10,7 +10,7 @@
 #include "TetTri.h"
 #include "TetLine.h"
 
-LogicalGame::LogicalGame(TetrisBoard* pBoard)
+LogicalGame::LogicalGame(NatrisBoard* pBoard)
 {
     srand((unsigned)time(0));
     mPieces[SHAPE_LINE_4] = new TetLine(SHAPE_LINE_4, pBoard);

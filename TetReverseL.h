@@ -1,11 +1,11 @@
 #ifndef _Tet_Reverse_L_h_
 #define _Tet_Reverse_L_h_
-#include "TetrisDefs.h"
+#include "NatrisDefs.h"
 #include "Tetromino.h"
 class TetReverseL : public Tetromino
 {
 public:
-    TetReverseL(TetrominoShape shape, TetrisBoard* pBoard);
+    TetReverseL(TetrominoShape shape, NatrisBoard* pBoard);
     void Reset();
     void PopToTop();
     int Rotate(RotateDirection direction);

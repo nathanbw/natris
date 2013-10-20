@@ -1,10 +1,10 @@
-#ifndef _Tetris_Board_h_
-#define _Tetris_Board_h_
-#include "TetrisDefs.h"
-class TetrisBoard
+#ifndef _Natris_Board_h_
+#define _Natris_Board_h_
+#include "NatrisDefs.h"
+class NatrisBoard
 {
 public:
-    TetrisBoard();
+    NatrisBoard();
     bool IsEmpty(int x, int y);
     TetrominoShape ShapeAt(int x, int y);
     int Write(int x, int y, int value);
@@ -14,4 +14,4 @@ public:
 private:
     int mBoard[20][10];
 };
-#endif // _Tetris_Board_h_
+#endif // _Natris_Board_h_

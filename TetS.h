@@ -1,11 +1,11 @@
 #ifndef _Tet_S_h_
 #define _Tet_S_h_
-#include "TetrisDefs.h"
+#include "NatrisDefs.h"
 #include "Tetromino.h"
 class TetS : public Tetromino
 {
 public:
-    TetS(TetrominoShape shape, TetrisBoard* pBoard);
+    TetS(TetrominoShape shape, NatrisBoard* pBoard);
     void Reset();
     void PopToTop();
     int Rotate(RotateDirection direction);

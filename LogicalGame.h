@@ -1,11 +1,11 @@
 #ifndef _Logical_Game_h_
 #define _Logical_Game_h_
-#include "TetrisDefs.h"
+#include "NatrisDefs.h"
 #include "Tetromino.h"
 class LogicalGame
 {
 public:
-    LogicalGame(TetrisBoard* pBoard);
+    LogicalGame(NatrisBoard* pBoard);
     Tetromino* GetCurrPiece();
     int ClearRows();
 private:

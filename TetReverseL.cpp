@@ -1,6 +1,6 @@
-#include "TetrisDefs.h"
+#include "NatrisDefs.h"
 #include "TetReverseL.h"
-TetReverseL::TetReverseL(TetrominoShape shape, TetrisBoard* pBoard) :
+TetReverseL::TetReverseL(TetrominoShape shape, NatrisBoard* pBoard) :
     Tetromino(shape, pBoard)
 {
     // Reverse L, like this:

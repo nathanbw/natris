@@ -2,13 +2,13 @@ Current Target: 0.1
 
 0.1 Planned Features:
 Single viewport, non-resizable 10x20 game board.
-All standard tetris pieces. (Square, Line, L, Reverse L, S, Backward S, Tri.)
+All tetrominoes. (Square, Line, L, Reverse L, S, Backward S, Tri.)
 No fancy scoring, but row and block stats are kept.
 No next piece preview.
 Fully playable.
       Movement controls work.
       "Collisions" work (rules are adhered to.)
-      Bottom row gets cleared when full.
+      Rows get cleared when full.
       Game ends when top of board is reached.
       Stats are kept, dumped to standard out.
 

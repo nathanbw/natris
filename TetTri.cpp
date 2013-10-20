@@ -1,6 +1,6 @@
-#include "TetrisDefs.h"
+#include "NatrisDefs.h"
 #include "TetTri.h"
-TetTri::TetTri(TetrominoShape shape, TetrisBoard* pBoard) :
+TetTri::TetTri(TetrominoShape shape, NatrisBoard* pBoard) :
     Tetromino(shape, pBoard)
 {
     // Tri, like this:
