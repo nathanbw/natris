@@ -18,7 +18,7 @@ Tetromino* pCurrPiece = 0;
 
 float colors[7][3] = {{1.0, 0.0, 0.0}, // Line
                       {0.0, 0.0, 1.0}, // Square
-                      {0.0, 0.75, 0.75}, // L
+                      {0.0, 0.25, 0.25}, // L
                       {0.5, 0.0, 0.5}, // Reverse L
                       {0.0, 1.0, 0.75}, // S
                       {0.25, 0.0, 0.0}, // Reverse S
@@ -51,8 +51,8 @@ void specialKeys(int key, int x, int y)
         pCurrPiece->MoveRight();
         break;
     case GLUT_KEY_DOWN :
-        //pCurrPiece->Fall();
-        pCurrPiece->Rotate(DIR_COUNTER_CLOCK);
+        pCurrPiece->Fall();
+        //pCurrPiece->Rotate(DIR_COUNTER_CLOCK);
         break;
     case GLUT_KEY_UP :
         pCurrPiece->Rotate(DIR_CLOCK);
