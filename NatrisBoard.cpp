@@ -1,11 +1,11 @@
-#include "TetrisDefs.h"
-#include "TetrisBoard.h"
+#include "NatrisDefs.h"
+#include "NatrisBoard.h"
 
 #include <iostream>
 using std::cout;
 using std::endl;
 
-TetrisBoard::TetrisBoard()
+NatrisBoard::NatrisBoard()
 {
     for (int i = 0; i < 20; i++)
     {
@@ -17,7 +17,7 @@ TetrisBoard::TetrisBoard()
 }
 
 bool
-TetrisBoard::IsEmpty(int x, int y)
+NatrisBoard::IsEmpty(int x, int y)
 {
     if((x >= 0) && (x < 10) && 
        (y >= 0) && (y < 20) &&
@@ -32,7 +32,7 @@ TetrisBoard::IsEmpty(int x, int y)
 }
 
 TetrominoShape
-TetrisBoard::ShapeAt(int x, int y)
+NatrisBoard::ShapeAt(int x, int y)
 {
     if((x >= 0) && (x < 10) &&
        (y >= 0) && (y < 20))
@@ -42,7 +42,7 @@ TetrisBoard::ShapeAt(int x, int y)
 }
 
 int
-TetrisBoard::Write(int x, int y, int value)
+NatrisBoard::Write(int x, int y, int value)
 {
     if((x >= 0) && (x < 10) &&
        (y >= 0) && (y < 20))
@@ -57,7 +57,7 @@ TetrisBoard::Write(int x, int y, int value)
 }
 
 int
-TetrisBoard::Print()
+NatrisBoard::Print()
 {
     for (int i = 0; i < 20; i++)
     {
@@ -70,7 +70,7 @@ TetrisBoard::Print()
 }
 
 int
-TetrisBoard::ClearRows()
+NatrisBoard::ClearRows()
 {
     bool clearRow = true;
     for (int i = 0; i < 20; i++)
@@ -89,7 +89,7 @@ TetrisBoard::ClearRows()
 }
 
 int
-TetrisBoard::ClearRow(int row)
+NatrisBoard::ClearRow(int row)
 {
     for (int j = 0; j < 10; j++)
     {

@@ -1,12 +1,12 @@
 #ifndef _Tetromino_h_
 #define _Tetromino_h_
-#include "TetrisDefs.h"
-#include "TetrisBoard.h"
+#include "NatrisDefs.h"
+#include "NatrisBoard.h"
 
 class Tetromino
 {
 public:
-  Tetromino(TetrominoShape shape, TetrisBoard* pBoard);
+  Tetromino(TetrominoShape shape, NatrisBoard* pBoard);
     int Fall();
     virtual int Rotate(RotateDirection direction);
     virtual void Reset();
@@ -21,7 +21,7 @@ public:
 protected:
     TetrominoShape mShape;
     int vCoords[4][2];
-    TetrisBoard* mpBoard;
+    NatrisBoard* mpBoard;
     TetrominoPosition mPos;
 };
 #endif // _Tetromino_h_

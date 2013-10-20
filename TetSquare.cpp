@@ -1,6 +1,6 @@
-#include "TetrisDefs.h"
+#include "NatrisDefs.h"
 #include "TetSquare.h"
-TetSquare::TetSquare(TetrominoShape shape, TetrisBoard* pBoard) :
+TetSquare::TetSquare(TetrominoShape shape, NatrisBoard* pBoard) :
     Tetromino(shape, pBoard)
 {
     // Square, like this:

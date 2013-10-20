@@ -1,7 +1,7 @@
-#include "TetrisDefs.h"
+#include "NatrisDefs.h"
 #include "TetLine.h"
 
-TetLine::TetLine(TetrominoShape shape, TetrisBoard* pBoard) :
+TetLine::TetLine(TetrominoShape shape, NatrisBoard* pBoard) :
     Tetromino(shape, pBoard)
 {
     // Square, like this:

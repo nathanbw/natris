@@ -1,8 +1,8 @@
 #include <iostream>
 #include <ctime>
 
-#include "TetrisDefs.h"
-#include "TetrisBoard.h"
+#include "NatrisDefs.h"
+#include "NatrisBoard.h"
 #include "LogicalGame.h"
 #include "Tetromino.h"
 
@@ -12,7 +12,7 @@
 
 int timeToFall = 0;
 void timeOut(int);
-TetrisBoard* pBoard = new TetrisBoard();
+NatrisBoard* pBoard = new NatrisBoard();
 LogicalGame* pGame = new LogicalGame(pBoard);
 Tetromino* pCurrPiece = 0;
 
@@ -33,7 +33,7 @@ void init()
 
 void reshape (int w, int h)
 {
-   glViewport (0, 0, (GLsizei) w, (GLsizei) h); 
+   glViewport (0, 0, (GLsizei) w, (GLsizei) h);
    glMatrixMode (GL_PROJECTION);
    glLoadIdentity ();
    gluOrtho2D(0.0, 10.0, 0.0, 20.0);
@@ -180,7 +180,7 @@ int main(int argc, char** argv)
  	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
  	glutInitWindowSize(320,640);
  	glutInitWindowPosition(100,100);
- 	glutCreateWindow("uTetris-Dev");
+ 	glutCreateWindow("natris");
     init();
  	glutDisplayFunc(renderScene);
     glutReshapeFunc(reshape);

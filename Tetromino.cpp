@@ -4,7 +4,7 @@
 using std::cout;
 using std::endl;
 
-Tetromino::Tetromino(TetrominoShape shape, TetrisBoard* pBoard) :
+Tetromino::Tetromino(TetrominoShape shape, NatrisBoard* pBoard) :
     mShape(shape),
     mpBoard(pBoard),
     mPos(TP_UP)
